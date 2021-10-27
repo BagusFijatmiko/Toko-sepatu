@@ -1,80 +1,89 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Form Input Pembelian</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Transaksi</title>
 </head>
+<style>
+fieldset {
+    width: 23%;
+    margin: 100px auto;
+    border-radius: 20px;
+    border-style: inset outset;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+fieldset th {
+    font-weight: normal;
+}
+
+legend {
+    font-family: lucida handwriting;
+}
+
+select {
+    width: 100%;
+
+}
+</style>
 
 <body>
-    <center>
-        <form action="<?= base_url('tokosepatu/cetak'); ?>" method="post">
+    <fieldset>
+        <legend>Input Transaksi</legend>
+        <form method="POST">
             <table>
                 <tr>
-                    <th colspan="3">
-                        Form Input Data Nama Pembeli
-                    </th>
-                </tr>
-                <tr>
-                    <td colspan="3">
-                        <hr>
-                    </td>
-                </tr>
-                <tr>
                     <th>Nama Pembeli</th>
-                    <th>:</th>
-                    <td>
-                        <input type="text" name="nama" id="nama">
-                    </td>
-                </tr>
-                <tr>
-                    <th>No HP</th>
                     <td>:</td>
                     <td>
-                        <input type="text" name="nohp" id="nohp">
+                        <input type="text" name="nama" id="nama">
+                        <?= form_error('nama', '<br><span style="color:red";>', '</span>'); ?>
                     </td>
                 </tr>
                 <tr>
-                    <th>Merk</th>
+                    <th>Nomer HP</th>
+                    <td>:</td>
+                    <td>
+                        <input type="text" name="nhp" id="nhp">
+                        <?= form_error('nhp', '<br><span style="color:red";>', '</span>'); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Merk Sepatu</th>
                     <td>:</td>
                     <td>
                         <select name="merk" id="merk">
-                            <option value="">Pilih Merk</option>
-                            <option value="Nike">Nike</option>
-                            <option value="Adidas">Adidas</option>
-                            <option value="Kickers">Kickers</option>
-                            <option value="Eiger">Eiger</option>
-                            <option value="Bucharri">Bucharri</option>
+                            <option>-- PILIH --</option>
+                            <?php foreach ($merk as $m) : ?>
+                            <option value="<?= $m; ?>"><?= $m; ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </td>
+                </tr>
                 <tr>
-                    <th>Ukuran</th>
+                    <th>Ukuran Sepatu</th>
                     <td>:</td>
                     <td>
                         <select name="ukuran" id="ukuran">
-                            <option value="">Pilih Ukuran</option>
-                            <option value="32">32</option>
-                            <option value="33">33</option>
-                            <option value="34">34</option>
-                            <option value="35">35</option>
-                            <option value="36">36</option>
-                            <option value="37">37</option>
-                            <option value="38">38</option>
-                            <option value="39">39</option>
-                            <option value="40">40</option>
-                            <option value="41">41</option>
-                            <option value="42">42</option>
-                            <option value="43">43</option>
-                            <option value="44">44</option>
+                            <option>-- PILIH --</option>
+                            <?php for ($i = 32; $i <= 44; $i++) : ?>
+                            <option value="<?= $i; ?>"><?= $i; ?></option>
+                            <?php endfor; ?>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3" align="center">
-                        <input type="submit" value="Submit">
+                        <hr>
+                        <button type="submit">Simpan</button>
                     </td>
                 </tr>
             </table>
         </form>
-    </center>
+    </fieldset>
 </body>
 
 </html>

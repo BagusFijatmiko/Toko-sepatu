@@ -1,65 +1,87 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <title>Tampil Data Pembelian</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Transaksi</title>
 </head>
+<style>
+fieldset {
+    width: 18%;
+    margin: 100px auto;
+    border-radius: 20px;
+    border-style: inset outset;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+button a {
+    text-decoration: none;
+    color: black;
+}
+
+fieldset th {
+    font-weight: normal;
+}
+
+legend {
+    font-family: lucida handwriting;
+}
+
+select {
+    width: 100%;
+
+}
+</style>
 
 <body>
-    <center>
+    <fieldset>
+        <legend>Output Transaksi</legend>
         <table>
             <tr>
-                <th colspan="3">
-                    Tampil Data Pembelian
-                </th>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    <hr>
-                </td>
-            </tr>
-            <tr>
                 <th>Nama Pembeli</th>
-                <th>:</th>
+                <td>:</td>
                 <td>
                     <?= $nama; ?>
                 </td>
             </tr>
             <tr>
-                <th>No HP</th>
-                <th>:</th>
+                <th>Nomer HP</th>
+                <td>:</td>
                 <td>
-                    <?= $nohp; ?>
+                    <?= $nhp; ?>
                 </td>
             </tr>
             <tr>
-                <th>Merk</th>
-                <th>:</th>
+                <th>Merk Sepatu</th>
+                <td>:</td>
                 <td>
                     <?= $merk; ?>
                 </td>
             </tr>
             <tr>
-                <th>Ukuran</th>
-                <th>:</th>
+                <th>Ukuran Sepatu</th>
+                <td>:</td>
                 <td>
                     <?= $ukuran; ?>
                 </td>
             </tr>
             <tr>
-                <th>Harga</th>
-                <th>:</th>
+                <th>Total Harga</th>
+                <td>:</td>
                 <td>
                     <?= $harga; ?>
                 </td>
             </tr>
             <tr>
                 <td colspan="3" align="center">
-                    <a href="<?= base_url('tokosepatu');
-                    ?>">kembali</a>
+                    <hr>
+                    <button><a href="<?= base_url('Tokosepatu'); ?>">Kembali</a></button>
                 </td>
             </tr>
         </table>
-    </center>
+    </fieldset>
 </body>
 
 </html>

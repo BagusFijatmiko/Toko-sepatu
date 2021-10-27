@@ -1,51 +1,37 @@
 <?php
+defined('BASEPATH') or exit('NO direct script access allowed');
+
 class Tokosepatu extends CI_Controller
 {
- 
-    public function index()
- 
+    public function __construct()
     {
- 
-        $this->load->view('view_form_tokosepatu');
+        parent::__construct();
+        $this->load->model('ModelToko');
     }
- 
-    public function cetak()
+
+    public function index()
     {
-        $this->form_validation->set_rules('nama', 'Nama Pembeli',
-            'required|min_length[3]', [
+        $this->form_validation->set_rules('nama', 'Nama Pembeli', 'required', [
             'required' => 'Nama Pembeli Harus diisi',
-            'min_lenght' => 'Nama tidak boleh kosong'
         ]);
- 
-        $this->form_validation->set_rules('nohp', 'No HP',
-            'required|min_length[3]', [
-            'required' => 'No HP Harus diisi',
-            'min_lenght' => 'No HP terlalu pendek'
+
+        $this->form_validation->set_rules('nhp', 'Nomor HP', 'required', [
+            'required' => 'Nomor HP Harus diisi',
         ]);
- 
-        if ($this->form_validation->run() == false) {
-            $this->load->view('view_form_tokosepatu');
+
+        if ($this->form_validation->run() != true) {
+            $data['merk'] = ['Nike', 'Adidas', 'Kickers', 'Eiger', 'Bucherri'];
+            $this->load->view('view_form_tokosepatu', $data);
         } else {
             $data = [
                 'nama' => $this->input->post('nama'),
-                'nohp' => $this->input->post('nohp'),
-                'ukuran'=> $this->input->post('ukuran'),
+                'nhp' => $this->input->post('nhp'),
                 'merk' => $this->input->post('merk'),
-                'harga' => $this->input->post('harga')
+                'ukuran' => $this->input->post('ukuran'),
+                'harga' => $this->ModelToko->proses($this->input->post('merk'))
             ];
-            if ($this->input->post('merk') == "Nike"){
-                $data['harga'] = 375000;
-            }else if($this->input->post('merk') == "Adidas"){
-                $data['harga'] = 300000;
-            }else if($this->input->post('merk') == "Kickers"){
-             $data['harga'] = 250000;
-            }else if($this->input->post('merk') == "Eiger"){
-             $data['harga'] = 275000;
-            }else if($this->input->post('merk') == "Bucherri"){
-            $data['harga'] = 400000;
-            }
- 
-        $this->load->view('view_data_tokosepatu', $data);
+
+            $this->load->view('view_data_tokosepatu', $data);
         }
     }
 }
